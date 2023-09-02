@@ -16,27 +16,17 @@
         android:outlineAmbientShadowColor="@android:color/transparent"
         android:outlineSpotShadowColor="@android:color/transparent"
         android:background="?android:attr/colorPrimary"
-        android:theme="@style/Theme.CollapsingToolbar.Settings">
+        android:theme="@style/Theme.AppCompat.DayNight">
 
-        <com.google.android.material.appbar.CollapsingToolbarLayout
+        <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/collapsing_toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clipToPadding="false"
             app:forceApplySystemWindowInsetTop="true"
-            app:extraMultilineHeightEnabled="true"
-            app:contentScrim="@color/toolbar_collapsed"
             app:maxLines="3"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
-            app:scrimAnimationDuration="50"
-            app:scrimVisibleHeightTrigger="@dimen/settingslib_scrim_visible_height_trigger"
-            app:statusBarScrim="@null"
-            app:titleCollapseMode="fade"
-            app:collapsedTitleTextAppearance="@style/CollapsingToolbarTitle.Collapsed"
-            app:expandedTitleTextAppearance="@style/CollapsingToolbarTitle.Expanded"
-            app:expandedTitleMarginStart="@dimen/expanded_title_margin_start"
-            app:expandedTitleMarginEnd="@dimen/expanded_title_margin_end"
-            app:toolbarId="@id/action_bar">
+
+            android:orientation="vertical">
 
             <RelativeLayout
                 android:id="@+id/header_container"
@@ -91,10 +81,10 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:theme="?android:attr/actionBarTheme"
+                android:theme="@style/AppTheme.NoActionBar"
                 android:transitionName="shared_element_view"
                 app:layout_collapseMode="pin"/>
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
+        </com.google.android.material.appbar.AppBarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView

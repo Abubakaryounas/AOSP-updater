@@ -13,13 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.lineageos.updater;
+package com.techless.updater.model;
 
-import androidx.appcompat.app.AppCompatActivity;
+public interface UpdateBaseInfo {
+    String getName();
 
-import org.lineageos.updater.model.UpdateInfo;
+    String getDownloadId();
 
-public abstract class UpdatesListActivity extends AppCompatActivity {
-    public abstract void exportUpdate(UpdateInfo update);
-    public abstract void showSnackbar(int stringId, int duration);
+    long getTimestamp();
+
+    String getType();
+
+    String getVersion();
+
+    String getDownloadUrl();
+
+    long getFileSize();
 }

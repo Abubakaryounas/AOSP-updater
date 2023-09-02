@@ -13,20 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.lineageos.updater.model;
+package com.techless.updater.misc;
 
-public interface UpdateBaseInfo {
-    String getName();
+import android.os.SystemProperties;
 
-    String getDownloadId();
+public final class BuildInfoUtils {
 
-    long getTimestamp();
+    private BuildInfoUtils() {
+    }
 
-    String getType();
+    public static long getBuildDateTimestamp() {
+        return SystemProperties.getLong(Constants.PROP_BUILD_DATE, 0);
+    }
 
-    String getVersion();
-
-    String getDownloadUrl();
-
-    long getFileSize();
+    public static String getBuildVersion() {
+        return SystemProperties.get(Constants.PROP_BUILD_VERSION);
+    }
 }

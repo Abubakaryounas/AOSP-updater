@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.lineageos.updater;
+package com.techless.updater;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -28,7 +28,9 @@ import android.widget.Toast;
 
 import androidx.core.app.NotificationCompat;
 
-import org.lineageos.updater.misc.FileUtils;
+import com.techless.updater.misc.FileUtils;
+
+import org.lineageos.updater.R;
 
 import java.io.File;
 import java.io.IOException;

@@ -16,7 +16,7 @@ android {
     compileSdk = 33
 
     defaultConfig {
-        applicationId = "org.lineageos.updater"
+        applicationId = "com.techless.updater"
         minSdk = 30
         targetSdk = 33
         versionCode = 1
@@ -77,4 +77,5 @@ dependencies {
     implementation("androidx.preference:preference:1.2.0")
     implementation("androidx.recyclerview:recyclerview:1.2.1")
     implementation("com.google.android.material:material:1.9.0-alpha01")
+    implementation ("com.google.android.material:material:1.0.0")
 }

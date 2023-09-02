@@ -13,14 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.lineageos.updater;
+package com.techless.updater;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
-import android.net.Uri;
 import android.os.BatteryManager;
 import android.os.PowerManager;
 import android.text.SpannableString;
@@ -40,8 +38,6 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.view.ContextThemeWrapper;
@@ -53,14 +49,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.snackbar.Snackbar;
 
-import org.lineageos.updater.controller.UpdaterController;
-import org.lineageos.updater.controller.UpdaterService;
-import org.lineageos.updater.misc.BuildInfoUtils;
-import org.lineageos.updater.misc.Constants;
-import org.lineageos.updater.misc.StringGenerator;
-import org.lineageos.updater.misc.Utils;
-import org.lineageos.updater.model.UpdateInfo;
-import org.lineageos.updater.model.UpdateStatus;
+import org.lineageos.updater.R;
+import com.techless.updater.controller.UpdaterController;
+import com.techless.updater.controller.UpdaterService;
+import com.techless.updater.misc.Constants;
+import com.techless.updater.misc.StringGenerator;
+import com.techless.updater.misc.Utils;
+import com.techless.updater.model.UpdateInfo;
+import com.techless.updater.model.UpdateStatus;
 
 import java.io.IOException;
 import java.text.DateFormat;
@@ -538,7 +534,7 @@ public class UpdatesListAdapter extends RecyclerView.Adapter<UpdatesListAdapter.
         ContextThemeWrapper wrapper = new ContextThemeWrapper(mActivity,
                 R.style.AppTheme_PopupMenuOverlapAnchor);
         PopupMenu popupMenu = new PopupMenu(wrapper, anchor, Gravity.NO_GRAVITY,
-                R.attr.actionOverflowMenuStyle, 0);
+                androidx.appcompat.R.attr.actionOverflowMenuStyle, 0);
         popupMenu.inflate(R.menu.menu_action_mode);
 
         boolean shouldShowDelete = canDelete;

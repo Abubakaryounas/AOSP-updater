@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.lineageos.updater.misc;
+package com.techless.updater.misc;
 
 import android.app.AlarmManager;
 import android.content.ClipData;
@@ -32,15 +32,16 @@ import android.widget.Toast;
 
 import androidx.preference.PreferenceManager;
 
+import com.techless.updater.UpdatesDbHelper;
+import com.techless.updater.controller.UpdaterService;
+import com.techless.updater.model.Update;
+import com.techless.updater.model.UpdateBaseInfo;
+import com.techless.updater.model.UpdateInfo;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.lineageos.updater.R;
-import org.lineageos.updater.UpdatesDbHelper;
-import org.lineageos.updater.controller.UpdaterService;
-import org.lineageos.updater.model.Update;
-import org.lineageos.updater.model.UpdateBaseInfo;
-import org.lineageos.updater.model.UpdateInfo;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -96,7 +97,7 @@ public class Utils {
     }
 
     public static boolean isCompatible(UpdateBaseInfo update) {
-        if (update.getVersion().compareTo(SystemProperties.get(Constants.PROP_BUILD_VERSION)) < 0) {
+        /*if (update.getVersion().compareTo(SystemProperties.get(Constants.PROP_BUILD_VERSION)) < 0) {
             Log.d(TAG, update.getName() + " is older than current Android version");
             return false;
         }
@@ -108,15 +109,33 @@ public class Utils {
         if (!update.getType().equalsIgnoreCase(SystemProperties.get(Constants.PROP_RELEASE_TYPE))) {
             Log.d(TAG, update.getName() + " has type " + update.getType());
             return false;
-        }
+        }*/
         return true;
     }
 
     public static boolean canInstall(UpdateBaseInfo update) {
-        return (SystemProperties.getBoolean(Constants.PROP_UPDATER_ALLOW_DOWNGRADING, false) ||
+        Log.d(TAG, "canInstall: " + update.getTimestamp());
+        Log.d(TAG, "canInstall: " + update.getVersion());
+        Log.d(TAG, "canInstall: " + update.getName());
+        Log.d(TAG, "canInstall: " + update.getDownloadUrl());
+        Log.d(TAG, "canInstall: " + update.getDownloadId());
+        Log.d(TAG, "canInstall: " + update.getType());
+
+        Log.d(TAG, "canInstall: current");
+
+        Log.d(TAG, "canInstall: " + SystemProperties.getBoolean(Constants.PROP_UPDATER_ALLOW_DOWNGRADING, false));
+        Log.d(TAG, "canInstall: " + SystemProperties.getLong(Constants.PROP_BUILD_DATE, 0));
+        Log.d(TAG, "canInstall: " + SystemProperties.get(Constants.PROP_BUILD_VERSION));
+        Log.d(TAG, "canInstall: " + SystemProperties.get(Constants.PROP_AB_DEVICE));
+        Log.d(TAG, "canInstall: " + SystemProperties.get(Constants.PROP_UPDATER_URI));
+        Log.d(TAG, "canInstall: " + SystemProperties.get(Constants.UPDATE_RECOVERY_PROPERTY));
+        Log.d(TAG, "canInstall: " + SystemProperties.get(Constants.PROP_RELEASE_TYPE));
+        return true;
+
+              /*  (SystemProperties.getBoolean(Constants.PROP_UPDATER_ALLOW_DOWNGRADING, false) ||
                 update.getTimestamp() > SystemProperties.getLong(Constants.PROP_BUILD_DATE, 0)) &&
                 update.getVersion().equalsIgnoreCase(
-                        SystemProperties.get(Constants.PROP_BUILD_VERSION));
+                        SystemProperties.get(Constants.PROP_BUILD_VERSION));*/
     }
 
     public static List<UpdateInfo> parseJson(File file, boolean compatibleOnly)

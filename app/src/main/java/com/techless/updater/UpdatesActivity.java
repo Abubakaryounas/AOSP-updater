@@ -13,10 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.lineageos.updater;
+package com.techless.updater;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.app.UiModeManager;
 import android.content.BroadcastReceiver;
@@ -63,19 +62,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SimpleItemAnimator;
 
 import com.google.android.material.appbar.AppBarLayout;
-import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONException;
-import org.lineageos.updater.controller.UpdaterController;
-import org.lineageos.updater.controller.UpdaterService;
-import org.lineageos.updater.download.DownloadClient;
-import org.lineageos.updater.misc.BuildInfoUtils;
-import org.lineageos.updater.misc.Constants;
-import org.lineageos.updater.misc.StringGenerator;
-import org.lineageos.updater.misc.Utils;
-import org.lineageos.updater.model.Update;
-import org.lineageos.updater.model.UpdateInfo;
+import org.lineageos.updater.R;
+import com.techless.updater.controller.UpdaterController;
+import com.techless.updater.controller.UpdaterService;
+import com.techless.updater.download.DownloadClient;
+import com.techless.updater.misc.BuildInfoUtils;
+import com.techless.updater.misc.Constants;
+import com.techless.updater.misc.StringGenerator;
+import com.techless.updater.misc.Utils;
+import com.techless.updater.model.Update;
+import com.techless.updater.model.UpdateInfo;
 
 import java.io.File;
 import java.io.IOException;
@@ -100,7 +99,7 @@ public class UpdatesActivity extends UpdatesListActivity implements UpdateImport
     private final ActivityResultLauncher<Intent> mExportUpdate = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             result -> {
-                if (result.getResultCode() == Activity.RESULT_OK) {
+                if (result.getResultCode() == RESULT_OK) {
                     Intent intent = result.getData();
                     if (intent != null) {
                         Uri uri = intent.getData();
@@ -169,8 +168,8 @@ public class UpdatesActivity extends UpdatesListActivity implements UpdateImport
                 RelativeLayout headerContainer = findViewById(R.id.header_container);
                 recyclerView.setOnApplyWindowInsetsListener((view, insets) -> {
                     int top = insets.getInsets(WindowInsetsCompat.Type.statusBars()).top;
-                    CollapsingToolbarLayout.LayoutParams lp =
-                            (CollapsingToolbarLayout.LayoutParams)
+                    AppBarLayout.LayoutParams lp =
+                            (AppBarLayout.LayoutParams)
                                     headerContainer.getLayoutParams();
                     lp.topMargin = top + statusBarHeight;
                     headerContainer.setLayoutParams(lp);
@@ -195,7 +194,7 @@ public class UpdatesActivity extends UpdatesListActivity implements UpdateImport
 
         if (!mIsTV) {
             // Switch between header title and appbar title minimizing overlaps
-            final CollapsingToolbarLayout collapsingToolbar = findViewById(R.id.collapsing_toolbar);
+            final AppBarLayout collapsingToolbar = findViewById(R.id.collapsing_toolbar);
             final AppBarLayout appBar = findViewById(R.id.app_bar);
             appBar.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
                 boolean mIsShown = false;
@@ -204,10 +203,9 @@ public class UpdatesActivity extends UpdatesListActivity implements UpdateImport
                 public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
                     int scrollRange = appBarLayout.getTotalScrollRange();
                     if (!mIsShown && scrollRange + verticalOffset < 10) {
-                        collapsingToolbar.setTitle(getString(R.string.display_name));
                         mIsShown = true;
                     } else if (mIsShown && scrollRange + verticalOffset > 100) {
-                        collapsingToolbar.setTitle(null);
+
                         mIsShown = false;
                     }
                 }
@@ -233,7 +231,7 @@ public class UpdatesActivity extends UpdatesListActivity implements UpdateImport
         super.onStart();
         Intent intent = new Intent(this, UpdaterService.class);
         startService(intent);
-        bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
+        bindService(intent, mConnection, BIND_AUTO_CREATE);
 
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(UpdaterController.ACTION_UPDATE_STATUS);

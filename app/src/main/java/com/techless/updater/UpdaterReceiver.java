@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.lineageos.updater;
+package com.techless.updater;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -28,10 +28,13 @@ import android.os.SystemProperties;
 import androidx.core.app.NotificationCompat;
 import androidx.preference.PreferenceManager;
 
-import org.lineageos.updater.misc.BuildInfoUtils;
-import org.lineageos.updater.misc.Constants;
-import org.lineageos.updater.misc.StringGenerator;
-import org.lineageos.updater.misc.Utils;
+import com.techless.updater.misc.BuildInfoUtils;
+import com.techless.updater.misc.Constants;
+import com.techless.updater.misc.StringGenerator;
+
+import org.lineageos.updater.R;
+
+import com.techless.updater.misc.Utils;
 
 import java.text.DateFormat;
 
